@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Card, CardSection, Button, Input, ClickableText, Header } from './common';
+import { Card, CardSection, MyButton, Input } from './common';
 
 class LoginForm extends Component {
+  static navigationOptions = {
+    title: 'Log In'
+ };
+
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Card>
         <CardSection>
@@ -19,10 +23,12 @@ class LoginForm extends Component {
           />
         </CardSection>
         <CardSection>
-          <Button>Submit</Button>
+          <MyButton>Submit</MyButton>
         </CardSection>
         <CardSection>
-          <ClickableText text='Sign Up' />
+          <MyButton
+            onPress={() => navigate('SignUp')}
+          >Sign Up</MyButton>
         </CardSection>
       </Card>
     );
