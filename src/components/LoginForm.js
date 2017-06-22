@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardSection, MyButton, Input } from './common';
+import shim from '../../shim';
+
+const jwt = require('react-native-jwt');
 
 class LoginForm extends Component {
   static navigationOptions = {
@@ -18,6 +21,12 @@ class LoginForm extends Component {
     const { email, password } = this.state;
     console.log(email);
     console.log(password);
+    const payload = { email, password, password_confirmation: password };
+    const secret = 'secret';
+    const token = jwt.encode(payload, secret);
+    console.log(token);
+    debugger;
+
     try {
       await fetch('http://localhost:3000/users', {
         method: 'POST',
